@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="EPersistencia.PlanetaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EPersistencia"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models ="using:EPersistencia.Models"
+    mc:Ignorable="d">
+
+    <Grid x:Name="root" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.Resources>
+            <models:Planetas x:Key="data"/>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <ListBox
+            x:Name="list"
+            ItemsSource="{Binding Source={StaticResource data}, Path=Data, Mode=TwoWay}"
+            >
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:Planeta">
+                    <StackPanel>
+                        <TextBlock 
+                            Style="{StaticResource TitleTextBlockStyle}"
+                            Text="{Binding Nombre}"/>
+                        <TextBlock 
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="{Binding Tamanio}"/>
+                        <TextBlock 
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="{Binding Gravedad}"/>
+                    </StackPanel>                    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+        </ListBox>
+        <StackPanel Grid.Row="1" Padding="10">
+            <TextBox  
+                x:Name="nombre"
+                PlaceholderText="Nombre" InputScope="Default"
+                Margin="0 0 0 10"
+            />
+            <TextBox  
+                x:Name="tamanio"
+                PlaceholderText="Tamaño" InputScope="Number"
+                Margin="0 0 0 10"
+                />
+            <TextBox  
+                x:Name="gravedad"
+                PlaceholderText="Nombre" InputScope="Number"/>
+            <Button x:Name="btnAdd" Content="Agregar" HorizontalAlignment="Stretch"
+                    Click="btnAdd_Click"
+                    />
+        </StackPanel>
+
+    </Grid>
+</Page>

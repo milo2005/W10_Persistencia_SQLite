@@ -15,7 +15,7 @@ namespace EPersistencia.DataBase
 
         public PlanetaDao() {
             db = new SQLiteConnection("planetas.db");
-            string sql = "CREATE IF NOT EXISTS planeta ("
+            string sql = "CREATE TABLE IF NOT EXISTS planeta ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT"
                 + ", nombre VARCHAR"
                 + ", tamanio FLOAT"
@@ -106,8 +106,8 @@ namespace EPersistencia.DataBase
             Planeta p = new Planeta();
             p.Id = (long)stm[0];
             p.Nombre = (string)stm[1];
-            p.Tamanio = (float)stm[2];
-            p.Gravedad = (float)stm[3];
+            p.Tamanio = (float)Convert.ToDouble(stm[2].ToString());
+            p.Gravedad = (float)Convert.ToDouble(stm[3].ToString());
             return p;
         }
 
